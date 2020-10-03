@@ -1,6 +1,7 @@
 import React from 'react';
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client';
-import SongList from './components/SongList';
+import SongList from './components/Songs/SongList';
+import './App.css';
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),

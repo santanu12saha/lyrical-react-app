@@ -1,3 +1,11 @@
 .App {
   text-align: center;
 }
+body {
+  text-align: center;
+}
+
+.songs {
+  margin: 30px;
+}
+
