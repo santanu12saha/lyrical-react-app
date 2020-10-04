@@ -1,11 +1,18 @@
-.App {
-  text-align: center;
-}
-body {
+h3 {
+  font-size: 20px;
+  font-weight: bold;
   text-align: center;
 }
 
-.songs {
-  margin: 30px;
+li.collection-item.song-item:hover {
+  cursor: pointer;
+}
+
+.back-link {
+  display: inline-flex;
+}
+
+.back-link span {
+  margin-top: 4px;
 }
 

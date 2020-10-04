@@ -1,7 +1,7 @@
 import React from 'react';
 
 const song = (props) => (
-   <button type="button" className="list-group-item list-group-item-action" onClick={props.clicked}>{props.title}</button>
+   <li onClick={props.clicked} className="collection-item song-item">{props.title}</li>
 );
 
 export default song;
