@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom'; 
 import { gql, useMutation } from '@apollo/client';
+import FETCH_SONGS from '../../queries/fetchSongs';
 
 
 const ADD_SONG = gql`
@@ -12,7 +13,6 @@ const ADD_SONG = gql`
     }
 `;
 
-
 const SongCreate = () => {
     const history = new useHistory(); 
     const [title, setTitle] = useState('');
@@ -20,8 +20,13 @@ const SongCreate = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        addSong({ variables: { title: title } }).then(() => history.push('/'));
-        setTitle('');
+        addSong({ 
+            variables: { title: title }, 
+            refetchQueries: [{ query: FETCH_SONGS }] 
+        }).then(() => {
+            setTitle('');
+            history.push('/');
+        });
     }
 
     return (

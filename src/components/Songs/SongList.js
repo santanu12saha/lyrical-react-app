@@ -1,23 +1,15 @@
 import React from 'react';
 import Song from './Song';
 import { Link } from 'react-router-dom';
-import { gql, useQuery } from '@apollo/client';
-
-const GET_SONGS = gql`
-    query getSongs {
-        songs {
-            id
-            title
-        }
-    }
-`;
+import { useQuery } from '@apollo/client';
+import FETCH_SONGS from '../../queries/fetchSongs';
 
 const songSelectedHandler = (id) => {
     console.log(id);
 }
 
 function SongList() {
-    const { loading, error, data } = useQuery(GET_SONGS);
+    const { loading, error, data } = useQuery(FETCH_SONGS);
 
     let songs = null;
 

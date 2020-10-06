@@ -22,7 +22,7 @@ const client = new ApolloClient({
 const App = () => {
   return (
    <ApolloProvider client={client}>
-     <Router forceRefresh={true}>
+     <Router>
         <Main>
           <Switch>
             <Route path="/" exact component={SongList} />
