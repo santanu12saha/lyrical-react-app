@@ -1,17 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom'; 
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import FETCH_SONGS from '../../queries/fetchSongs';
+import ADD_SONG from '../../mutations/addSong';
 
-
-const ADD_SONG = gql`
-    mutation AddSong($title: String!) {
-        addSong(title: $title) {
-            id
-            title
-        }
-    }
-`;
 
 const SongCreate = () => {
     const history = new useHistory(); 

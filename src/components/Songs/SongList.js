@@ -1,15 +1,20 @@
 import React from 'react';
 import Song from './Song';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import FETCH_SONGS from '../../queries/fetchSongs';
+import DELETE_SONG from '../../mutations/deleteSong';
 
-const songSelectedHandler = (id) => {
-    console.log(id);
-}
-
-function SongList() {
+const SongList = () => {
     const { loading, error, data } = useQuery(FETCH_SONGS);
+    const [deleteSong] = useMutation(DELETE_SONG);
+
+    const songDeleteHandler = (id) => {
+        deleteSong({
+            variables: { id },
+            refetchQueries: [{ query: FETCH_SONGS }] 
+        });
+     }
 
     let songs = null;
 
@@ -21,11 +26,11 @@ function SongList() {
         songs = <p style={{textAlign: "center"}}>Something went wrong! (Error! {error.message})</p>;
     }
     if(data) {
-        songs = data.songs.map(song => {
+        songs = data.songs.map(({ id, title }) => {
             return <Song
-                key={song.id}
-                title={song.title}
-                clicked={() => songSelectedHandler(song.id)}
+                key={id}
+                title={title}
+                delete={() => songDeleteHandler(id)}
             />
         });
     }
