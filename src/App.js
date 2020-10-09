@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NoMatch from './components/404/NoMatch';
 import SongList from './components/Songs/SongList';
 import SongCreate from './components/Songs/SongCreate';
+import SongDetail from './components/Songs/SongDetail';
 import './App.css';
 import Main from './components/hoc/Main';
 
@@ -27,6 +28,7 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={SongList} />
             <Route path="/songs/new" component={SongCreate}/>
+            <Route path="/songs/:id" component={SongDetail}/>
             <Route path="*" component={NoMatch} />
           </Switch>
         </Main>
