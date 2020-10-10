@@ -2,14 +2,23 @@ import React from 'react';
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NoMatch from './components/404/NoMatch';
-import SongList from './components/Songs/SongList';
-import SongCreate from './components/Songs/SongCreate';
-import SongDetail from './components/Songs/SongDetail';
+import SongList from './components/songs/SongList';
+import SongCreate from './components/songs/SongCreate';
+import SongDetail from './components/songs/SongDetail';
 import './App.css';
 import Main from './components/hoc/Main';
 
 var options = {
-  resultCaching: false
+  dataIdFromObject: o => o.id,
+  typePolicies: {
+    Query: {
+      fields: {
+        songs: {
+          merge: false,
+        },
+      },
+    },
+  },
 };
 
 const client = new ApolloClient({

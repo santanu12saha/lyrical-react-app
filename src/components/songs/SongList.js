@@ -14,17 +14,18 @@ const SongList = () => {
             variables: { id },
             refetchQueries: [{ query: FETCH_SONGS }] 
         });
-     }
+    }
 
     let songs = null;
 
     if(loading) {
-       songs = <p style={{textAlign: "center"}}>Loading...</p>;
+       return <p style={{textAlign: "center"}}>Loading...</p>;
     }
 
     if(error) {
-        songs = <p style={{textAlign: "center"}}>Something went wrong! (Error! {error.message})</p>;
+        return <p style={{textAlign: "center"}}>Something went wrong! (Error! {error.message})</p>;
     }
+    
     if(data) {
         songs = data.songs.map(({ id, title }) => {
             return <Song
