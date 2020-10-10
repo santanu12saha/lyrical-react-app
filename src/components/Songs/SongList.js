@@ -29,6 +29,7 @@ const SongList = () => {
         songs = data.songs.map(({ id, title }) => {
             return <Song
                 key={id}
+                id={id}
                 title={title}
                 delete={() => songDeleteHandler(id)}
             />

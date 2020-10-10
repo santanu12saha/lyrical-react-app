@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import FETCH_SONG from '../../queries/fetchSong';
 
@@ -20,6 +21,9 @@ const SongDetail = (props) => {
         const { song } = data;
         return (
             <div>
+                <Link to="/"> 
+                    <div className="back-link"><i className="small material-icons">arrow_back</i> <span>Back</span></div>
+                </Link>
                 <h3>{song.title}</h3>
             </div>
         );
