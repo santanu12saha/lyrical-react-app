@@ -35,6 +35,8 @@ const SongList = () => {
                 delete={() => songDeleteHandler(id)}
             />
         });
+    } else {
+        return null;
     }
 
     return (

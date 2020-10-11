@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom'; 
+import { Link } from 'react-router-dom'; 
 import { useMutation } from '@apollo/client';
 import FETCH_SONGS from '../../queries/fetchSongs';
 import ADD_SONG from '../../mutations/addSong';
 
 
-const SongCreate = () => {
-    const history = new useHistory(); 
+const SongCreate = (props) => {
     const [title, setTitle] = useState('');
     const [addSong] = useMutation(ADD_SONG);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         addSong({ 
-            variables: { title: title }, 
+            variables: { title: title },
             refetchQueries: [{ query: FETCH_SONGS }] 
         }).then(() => {
             setTitle('');
-            history.push('/');
+            props.history.push('/');
         });
     }
 

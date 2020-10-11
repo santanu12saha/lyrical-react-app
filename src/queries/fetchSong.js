@@ -8,6 +8,7 @@ const FETCH_SONG = gql`
             lyrics{
                 id
                 content
+                likes
             }
         }
     }

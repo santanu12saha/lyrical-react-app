@@ -13,6 +13,14 @@ h3 {
   cursor: pointer;
 }
 
+.liked-button{
+  margin-right: 5px;
+}
+
+.liked-button:hover {
+  cursor: pointer;
+}
+
 .back-link {
   display: inline-flex;
 }
@@ -21,3 +29,7 @@ h3 {
   margin-top: 4px;
 }
 
+.vote-box {
+  display: flex;
+  align-items: center;
+}
