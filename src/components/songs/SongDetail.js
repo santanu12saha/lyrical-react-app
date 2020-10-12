@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LyricCreate from  '../../components/lyrics/LyricCreate';
 import LyricList from '../../components/lyrics/LyricList';
+import Spinner from '../UI/Spinner/Spinner';
 import { useQuery } from '@apollo/client';
 import FETCH_SONG from '../../queries/fetchSong';
 
@@ -12,7 +13,7 @@ const SongDetail = (props) => {
     });
 
     if(loading) {
-        return <p style={{textAlign: "center"}}>Loading...</p>;
+        return <Spinner/>;
     }
  
     if(error) {

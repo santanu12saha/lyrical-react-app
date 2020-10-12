@@ -1,23 +1,31 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
+import Spinner from '../UI/Spinner/Spinner'; 
 import { useMutation } from '@apollo/client';
 import FETCH_SONGS from '../../queries/fetchSongs';
 import ADD_SONG from '../../mutations/addSong';
 
 
 const SongCreate = (props) => {
+    const [isLoading, setLoading] = useState(false);
     const [title, setTitle] = useState('');
     const [addSong] = useMutation(ADD_SONG);
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setLoading(true);
         addSong({ 
             variables: { title: title },
             refetchQueries: [{ query: FETCH_SONGS }] 
         }).then(() => {
             setTitle('');
+            setLoading(false);
             props.history.push('/');
         });
+    }
+
+    if(isLoading) {
+        return <Spinner/>;
     }
 
     return (

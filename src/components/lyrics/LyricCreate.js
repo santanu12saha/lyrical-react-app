@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
+import Spinner from '../UI/Spinner/Spinner';
 import { useMutation } from '@apollo/client';
 import ADD_LYRIC_TO_SONG from '../../mutations/addLyricToSong';
 
 const LyricCreate = (props) => {
-
+    const [isLoading, setLoading] = useState(false);
     const [content, setContent] = useState('');
     const [addLyricToSong] = useMutation(ADD_LYRIC_TO_SONG);
 
     const handleLyricSubmit = (event) => {
         event.preventDefault();
+        setLoading(true);
         addLyricToSong({
             variables: { 
                 content: content,
@@ -16,8 +18,13 @@ const LyricCreate = (props) => {
             }
         }).then(() => {
             setContent('');
+            setLoading(false);
         });
        
+    }
+
+    if(isLoading) {
+        return <Spinner/>;
     }
 
     return (

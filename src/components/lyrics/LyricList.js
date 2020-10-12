@@ -6,9 +6,17 @@ import LIKE_LYRIC from '../../mutations/likeLyric';
 const LyricList = (props) => {
     const [likeLyric] = useMutation(LIKE_LYRIC);
 
-    const lyricLikeHandler = (lyricId) => {
+    const lyricLikeHandler = (lyricId, likes) => {
         likeLyric({
-            variables: { id: lyricId }
+            variables: { id: lyricId },
+            optimisticResponse: {
+                __typename: 'Mutation',
+                likeLyric: {
+                    id: lyricId,
+                    __typename: 'LyricType',
+                    likes: likes + 1
+                }
+            }
         });
     }
 
@@ -23,7 +31,7 @@ const LyricList = (props) => {
                 id={id}
                 content={content}
                 numberOfLikes={likes}
-                liked= {() => lyricLikeHandler(id)}
+                liked= {() => lyricLikeHandler(id, likes)}
             />
         });
     }
